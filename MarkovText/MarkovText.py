@@ -1,4 +1,4 @@
-from __future__ import division
+
 from collections import defaultdict
 import string
 import re
@@ -77,8 +77,8 @@ class Markov:
                 if not previous_words:
                     return ""
         frequencies = self.word_dict[previous_words]
-        inv = [(v.prob,k) for k, v in frequencies.items()]
-        p, w = zip(*inv)
+        inv = [(v.prob,k) for k, v in list(frequencies.items())]
+        p, w = list(zip(*inv))
         return np.random.choice(w,1,p)[0]
 
     def create_sentences(self, num, start=("",)):
